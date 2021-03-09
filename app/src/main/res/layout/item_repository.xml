@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="item"
+            type="com.example.toyproject.ui.model.RepoItem" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="?attr/selectableItemBackground"
+        android:paddingLeft="@dimen/item_repo_side"
+        android:paddingRight="@dimen/item_repo_side">
+
+        <ImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            bind:setImageUrl="@{item.owner.ownerUrl}"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="12dp"
+            android:layout_toEndOf="@+id/ivProfile"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextStyle.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{item.title}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                tools:text="Owner/Repository" />
+
+            <TextView
+                android:id="@+id/tvLanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{TextUtils.isEmpty(item.description) ? @string/no_language_specified : item.description }"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:text="Language" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>
