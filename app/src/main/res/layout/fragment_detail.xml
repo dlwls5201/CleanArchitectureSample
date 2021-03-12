@@ -6,8 +6,6 @@
 
     <data>
 
-        <import type="android.view.View" />
-
         <import type="android.text.TextUtils" />
 
         <variable
@@ -127,7 +125,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
                 android:src="@drawable/ic_description_black"
-                android:tint="@color/gray1" />
+                app:tint="@color/gray1" />
 
             <TextView
                 android:id="@+id/tvDescription"
@@ -165,7 +163,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
                 android:src="@drawable/ic_language_black"
-                android:tint="@color/gray1" />
+                app:tint="@color/gray1" />
 
             <TextView
                 android:id="@+id/tvLanguage"
@@ -192,8 +190,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="@{model.errorMessage}"
-            android:visibility="@{TextUtils.isEmpty(model.errorMessage) ? View.GONE : View.VISIBLE}"
+            android:text="@{model.showErrorMessage}"
+            android:visibility="@{!TextUtils.isEmpty(model.showErrorMessage)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -207,7 +205,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:visibility="@{model.isLoading() ? View.VISIBLE : View.GONE}"
+            android:visibility="@{model.showLoading}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

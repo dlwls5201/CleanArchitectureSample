@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.toyproject.R
+import com.example.toyproject.base.ext.EventMutableLiveData
+import com.example.toyproject.base.ext.postEvent
 import com.example.toyproject.data.base.BaseResponse
 import com.example.toyproject.data.model.RepoSearchResponse
 import com.example.toyproject.data.model.mapToPresentation
@@ -18,14 +20,12 @@ class SearchViewModel(
     private val searchRepository: RepoRepository
 ) : ViewModel() {
 
-    val isLoading = MutableLiveData(false)
+    val eventShowKeyboard = EventMutableLiveData<Boolean>()
+    val eventToast = EventMutableLiveData<String>()
 
-    val isKeyboard = MutableLiveData(false)
-
-    val errorMessage = MutableLiveData("")
-
+    val showLoading = MutableLiveData(false)
+    val showErrorMessage = MutableLiveData("")
     val editSearchText = MutableLiveData("")
-
     val enableSearchButton = MediatorLiveData<Boolean>().apply {
         addSource(editSearchText) { query ->
             Dlog.d("enableSearchButton query : $query")
@@ -39,9 +39,12 @@ class SearchViewModel(
 
     val items = MutableLiveData<List<RepoItem>>(emptyList())
 
+    init {
+        showKeyboard()
+    }
+
     fun searchRepository(context: Context) {
         hideKeyboard()
-
         viewModelScope.launch {
             val query = editSearchText.value ?: return@launch
             Dlog.d("query : $query")
@@ -83,22 +86,26 @@ class SearchViewModel(
     }
 
     private fun showLoading() {
-        isLoading.postValue(true)
+        showLoading.postValue(true)
     }
 
     private fun hideLoading() {
-        isLoading.postValue(false)
+        showLoading.postValue(false)
+    }
+
+    private fun showKeyboard() {
+        eventShowKeyboard.postEvent(true)
     }
 
     private fun hideKeyboard() {
-        isKeyboard.postValue(false)
+        eventShowKeyboard.postEvent(false)
     }
 
     private fun showErrorMessage(error: String) {
-        errorMessage.postValue(error)
+        showErrorMessage.postValue(error)
     }
 
     private fun hideErrorMessage() {
-        errorMessage.postValue("")
+        showErrorMessage.postValue("")
     }
 }

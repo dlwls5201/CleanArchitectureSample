@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.toyproject.R
 import com.example.toyproject.base.BaseFragment
+import com.example.toyproject.base.ext.longToast
+import com.example.toyproject.base.ext.observeEvent
 import com.example.toyproject.data.injection.Injection
 import com.example.toyproject.databinding.FragmentSearchBinding
 import com.example.toyproject.ui.MainActivity
@@ -29,6 +31,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
                     it.owner.ownerName,
                     it.repoName
                 )
+                hideKeyboard()
             }
         }
     }
@@ -51,15 +54,21 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     }
 
     override fun onViewModelSetup() {
-        searchModel.items.observe(viewLifecycleOwner, {
+        searchModel.items.observe(viewLifecycleOwner) {
             repoAdapter.setItems(it)
-        })
+        }
 
-        searchModel.isKeyboard.observe(viewLifecycleOwner, {
-            if (it.not()) {
-                AppUtils.hideSoftKeyBoard(requireActivity())
+        searchModel.eventShowKeyboard.observeEvent(viewLifecycleOwner) {
+            if (it) {
+                showKeyboard()
+            } else {
+                hideKeyboard()
             }
-        })
+        }
+
+        searchModel.eventToast.observeEvent(viewLifecycleOwner) {
+            longToast(it)
+        }
     }
 
     private fun initRecyclerView() {
@@ -80,5 +89,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
                 }
             }
         })
+    }
+
+    private fun showKeyboard() {
+        binding.etSearch.requestFocus()
+        AppUtils.showSoftKeyBoard(requireActivity())
+    }
+
+    private fun hideKeyboard() {
+        AppUtils.hideSoftKeyBoard(requireActivity())
     }
 }

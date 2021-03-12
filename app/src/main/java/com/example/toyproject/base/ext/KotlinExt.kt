@@ -4,16 +4,17 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.toyproject.base.ext.dialog.AlertBuilder
 import com.example.toyproject.base.ext.dialog.AndroidAlertBuilder
 
-inline fun <A, B, R> ifNotNull(a: A?, b: B?, code: (A, B) -> R) {
+inline fun <A, B, R> safeLet(a: A?, b: B?, code: (A, B) -> R) {
     if (a != null && b != null) {
         code(a, b)
     }
 }
 
-inline fun <A, B, C, R> ifNotNull(a: A?, b: B?, c: C?, code: (A, B, C) -> R) {
+inline fun <A, B, C, R> safeLet(a: A?, b: B?, c: C?, code: (A, B, C) -> R) {
     if (a != null && b != null && c != null) {
         code(a, b, c)
     }
@@ -25,8 +26,20 @@ fun Context.toast(message: CharSequence): Toast = Toast
         show()
     }
 
+fun Fragment.toast(message: CharSequence): Toast = Toast
+    .makeText(context, message, Toast.LENGTH_SHORT)
+    .apply {
+        show()
+    }
+
 fun Context.longToast(message: Int): Toast = Toast
     .makeText(this, message, Toast.LENGTH_LONG)
+    .apply {
+        show()
+    }
+
+fun Fragment.longToast(message: CharSequence): Toast = Toast
+    .makeText(context, message, Toast.LENGTH_SHORT)
     .apply {
         show()
     }
