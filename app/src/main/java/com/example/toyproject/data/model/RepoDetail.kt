@@ -7,7 +7,7 @@ import com.example.toyproject.ui.model.RepoDetailItem
 import com.example.toyproject.utils.DateUtils
 import java.util.*
 
-data class RepoDetailModel(
+data class RepoDetail(
     val title: String,
     val repoName: String,
     val ownerName: String,
@@ -20,7 +20,7 @@ data class RepoDetailModel(
     val stars: Int
 )
 
-fun RepoDetailModel.mapToPresentation(context: Context) = RepoDetailItem(
+fun RepoDetail.mapToPresentation(context: Context) = RepoDetailItem(
     title = title,
     repoName = repoName,
     ownerName = ownerName,

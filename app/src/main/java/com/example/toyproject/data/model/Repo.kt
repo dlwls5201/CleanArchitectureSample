@@ -8,7 +8,7 @@ import com.example.toyproject.utils.DateUtils
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
-data class RepoModel(
+data class Repo(
     @SerializedName("name")
     val name: String,
     @SerializedName("full_name")
@@ -32,7 +32,7 @@ data class RepoModel(
     )
 }
 
-fun RepoModel.mapToPresentation(context: Context) = RepoItem(
+fun Repo.mapToPresentation(context: Context) = RepoItem(
     title = fullName,
     repoName = name,
     owner = RepoItem.OwnerItem(

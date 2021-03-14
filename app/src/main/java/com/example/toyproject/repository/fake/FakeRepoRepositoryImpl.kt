@@ -1,8 +1,8 @@
 package com.example.toyproject.repository.fake
 
 import com.example.toyproject.data.base.BaseResponse
-import com.example.toyproject.data.model.RepoDetailModel
-import com.example.toyproject.data.model.RepoModel
+import com.example.toyproject.data.model.Repo
+import com.example.toyproject.data.model.RepoDetail
 import com.example.toyproject.data.model.RepoSearchResponse
 import com.example.toyproject.repository.RepoRepository
 import kotlinx.coroutines.Dispatchers
@@ -28,10 +28,10 @@ class FakeRepoRepositoryImpl : RepoRepository {
                     val repo = RepoSearchResponse(
                         totalCount = 10,
                         items = listOf(
-                            RepoModel(
+                            Repo(
                                 name = "name",
                                 fullName = "fullName",
-                                owner = RepoModel.OwnerModel(
+                                owner = Repo.OwnerModel(
                                     login = "login",
                                     avatarUrl = ""
                                 ),
@@ -56,14 +56,14 @@ class FakeRepoRepositoryImpl : RepoRepository {
     }
 
     override suspend fun getDetailRepository(
-        user: String, repo: String, callback: BaseResponse<RepoDetailModel>
+        user: String, repo: String, callback: BaseResponse<RepoDetail>
     ) {
         withContext(Dispatchers.Main) {
             try {
                 callback.onLoading()
                 withContext(Dispatchers.IO) {
                     delay(DELAY_TIME)
-                    val repoDetail = RepoDetailModel(
+                    val repoDetail = RepoDetail(
                         title = "title",
                         repoName = "repoName",
                         ownerName = "ownerName",

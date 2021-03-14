@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.toyproject.R
 import com.example.toyproject.data.base.BaseResponse
-import com.example.toyproject.data.model.RepoDetailModel
+import com.example.toyproject.data.model.RepoDetail
 import com.example.toyproject.data.model.mapToPresentation
 import com.example.toyproject.repository.RepoRepository
 import com.example.toyproject.ui.model.RepoDetailItem
@@ -22,8 +22,8 @@ class DetailViewModel(
 
     fun loadData(context: Context, ownerName: String, repo: String) {
         viewModelScope.launch {
-            repoRepository.getDetailRepository(ownerName, repo, object : BaseResponse<RepoDetailModel> {
-                override fun onSuccess(data: RepoDetailModel) {
+            repoRepository.getDetailRepository(ownerName, repo, object : BaseResponse<RepoDetail> {
+                override fun onSuccess(data: RepoDetail) {
                     repoDetailItem.postValue(data.mapToPresentation(context))
                 }
 

@@ -1,11 +1,8 @@
 package com.example.toyproject.data.model
 
-import android.content.Context
-import com.example.toyproject.R
-import com.example.toyproject.ui.model.UserItem
 import com.google.gson.annotations.SerializedName
 
-data class UserModel(
+data class User(
     @SerializedName("bio")
     val bio: String,
     @SerializedName("blog")
@@ -36,13 +33,4 @@ data class UserModel(
     val updatedAt: String,
     @SerializedName("avatar_url")
     val profileImgUrl: String
-)
-
-fun UserModel.mapToPresentation(context: Context) = UserItem(
-    followers = followers.let {
-        if (it > 100) context.getString(R.string.max_follow_number) else it.toString()
-    },
-    following = following.let {
-        if (it > 100) context.getString(R.string.max_follow_number) else it.toString()
-    }
 )

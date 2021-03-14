@@ -1,6 +1,6 @@
 package com.example.toyproject.data.api
 
-import com.example.toyproject.data.model.RepoModel
+import com.example.toyproject.data.model.Repo
 import com.example.toyproject.data.model.RepoSearchResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -15,5 +15,5 @@ interface RepoApi {
     suspend fun getRepository(
         @Path("owner") ownerLogin: String,
         @Path("name") repoName: String
-    ): RepoModel
+    ): Repo
 }

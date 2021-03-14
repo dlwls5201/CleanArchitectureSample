@@ -3,7 +3,7 @@ package com.example.toyproject.repository
 import com.example.toyproject.data.api.RepoApi
 import com.example.toyproject.data.api.UserApi
 import com.example.toyproject.data.base.BaseResponse
-import com.example.toyproject.data.model.RepoDetailModel
+import com.example.toyproject.data.model.RepoDetail
 import com.example.toyproject.data.model.RepoSearchResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -38,7 +38,7 @@ class RepoRepositoryImpl(
     }
 
     override suspend fun getDetailRepository(
-        user: String, repo: String, callback: BaseResponse<RepoDetailModel>
+        user: String, repo: String, callback: BaseResponse<RepoDetail>
     ) {
         withContext(Dispatchers.Main) {
             try {
@@ -50,7 +50,7 @@ class RepoRepositoryImpl(
                     val repoModel = repoDeferred.await()
                     val userModel = userDeferred.await()
 
-                    val repoDetail = RepoDetailModel(
+                    val repoDetail = RepoDetail(
                         title = repoModel.fullName,
                         repoName = repoModel.name,
                         ownerName = userModel.name,
