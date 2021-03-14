@@ -11,8 +11,8 @@ import com.example.toyproject.R
 import com.example.toyproject.base.BaseFragment
 import com.example.toyproject.base.ext.longToast
 import com.example.toyproject.base.ext.observeEvent
-import com.example.toyproject.data.injection.Injection
 import com.example.toyproject.databinding.FragmentSearchBinding
+import com.example.toyproject.injection.Injection
 import com.example.toyproject.ui.MainActivity
 import com.example.toyproject.ui.adapter.RepositoryAdapter
 import com.example.toyproject.utils.AppUtils

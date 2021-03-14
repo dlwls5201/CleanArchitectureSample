@@ -1,4 +1,4 @@
-package com.example.toyproject.data.model
+package com.blackjin.data.model
 
 import com.google.gson.annotations.SerializedName
 

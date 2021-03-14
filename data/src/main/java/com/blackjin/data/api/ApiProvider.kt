@@ -1,4 +1,4 @@
-package com.example.toyproject.data.api
+package com.blackjin.data.api
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.toyproject.R
 import com.example.toyproject.base.BaseFragment
-import com.example.toyproject.data.injection.Injection
 import com.example.toyproject.databinding.FragmentDetailBinding
+import com.example.toyproject.injection.Injection
 import com.example.toyproject.utils.Dlog
 
 class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_detail) {

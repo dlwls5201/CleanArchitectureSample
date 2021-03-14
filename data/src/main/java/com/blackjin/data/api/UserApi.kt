@@ -1,6 +1,6 @@
-package com.example.toyproject.data.api
+package com.blackjin.data.api
 
-import com.example.toyproject.data.model.User
+import com.blackjin.data.model.User
 import retrofit2.http.GET
 import retrofit2.http.Path
 

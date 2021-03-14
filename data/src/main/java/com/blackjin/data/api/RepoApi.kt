@@ -1,7 +1,7 @@
-package com.example.toyproject.data.api
+package com.blackjin.data.api
 
-import com.example.toyproject.data.model.Repo
-import com.example.toyproject.data.model.RepoSearchResponse
+import com.blackjin.data.model.Repo
+import com.blackjin.data.model.RepoSearchResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

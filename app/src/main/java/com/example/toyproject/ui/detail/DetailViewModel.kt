@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.blackjin.data.base.BaseResponse
+import com.blackjin.data.model.RepoDetail
+import com.blackjin.data.repository.RepoRepository
 import com.example.toyproject.R
-import com.example.toyproject.data.base.BaseResponse
-import com.example.toyproject.data.model.RepoDetail
-import com.example.toyproject.data.model.mapToPresentation
-import com.example.toyproject.repository.RepoRepository
 import com.example.toyproject.ui.model.RepoDetailItem
+import com.example.toyproject.ui.model.mapToPresentation
 import kotlinx.coroutines.launch
 
 class DetailViewModel(

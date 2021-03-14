@@ -1,10 +1,10 @@
-package com.example.toyproject.repository
+package com.blackjin.data.repository
 
-import com.example.toyproject.data.api.RepoApi
-import com.example.toyproject.data.api.UserApi
-import com.example.toyproject.data.base.BaseResponse
-import com.example.toyproject.data.model.RepoDetail
-import com.example.toyproject.data.model.RepoSearchResponse
+import com.blackjin.data.api.RepoApi
+import com.blackjin.data.api.UserApi
+import com.blackjin.data.base.BaseResponse
+import com.blackjin.data.model.RepoDetail
+import com.blackjin.data.model.RepoSearchResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext

@@ -1,8 +1,8 @@
-package com.example.toyproject.repository
+package com.blackjin.data.repository
 
-import com.example.toyproject.data.base.BaseResponse
-import com.example.toyproject.data.model.RepoDetail
-import com.example.toyproject.data.model.RepoSearchResponse
+import com.blackjin.data.base.BaseResponse
+import com.blackjin.data.model.RepoDetail
+import com.blackjin.data.model.RepoSearchResponse
 
 interface RepoRepository {
 

@@ -1,4 +1,4 @@
-package com.example.toyproject.data.base
+package com.blackjin.data.base
 
 interface BaseResponse<T> {
 

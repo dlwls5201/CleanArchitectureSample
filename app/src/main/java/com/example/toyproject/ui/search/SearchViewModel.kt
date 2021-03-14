@@ -5,14 +5,14 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.blackjin.data.base.BaseResponse
+import com.blackjin.data.model.RepoSearchResponse
+import com.blackjin.data.repository.RepoRepository
 import com.example.toyproject.R
 import com.example.toyproject.base.ext.EventMutableLiveData
 import com.example.toyproject.base.ext.postEvent
-import com.example.toyproject.data.base.BaseResponse
-import com.example.toyproject.data.model.RepoSearchResponse
-import com.example.toyproject.data.model.mapToPresentation
-import com.example.toyproject.repository.RepoRepository
 import com.example.toyproject.ui.model.RepoItem
+import com.example.toyproject.ui.model.mapToPresentation
 import com.example.toyproject.utils.Dlog
 import kotlinx.coroutines.launch
 
