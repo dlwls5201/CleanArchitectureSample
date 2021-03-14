@@ -40,7 +40,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         ViewModelProvider(viewModelStore, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 return SearchViewModel(
-                    Injection.provideRepoRepository()
+                    Injection.provideGetReposUsecase()
                 ) as T
             }
         }).get(SearchViewModel::class.java)

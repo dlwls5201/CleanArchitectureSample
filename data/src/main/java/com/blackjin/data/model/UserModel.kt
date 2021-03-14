@@ -1,8 +1,9 @@
 package com.blackjin.data.model
 
+import com.blackjin.domain.model.User
 import com.google.gson.annotations.SerializedName
 
-data class User(
+data class UserModel(
     @SerializedName("bio")
     val bio: String,
     @SerializedName("blog")
@@ -33,4 +34,11 @@ data class User(
     val updatedAt: String,
     @SerializedName("avatar_url")
     val profileImgUrl: String
+)
+
+fun UserModel.mapToDomain() = User(
+    name = name,
+    profileImgUrl = profileImgUrl,
+    followers = followers,
+    following = following
 )

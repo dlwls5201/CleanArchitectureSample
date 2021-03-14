@@ -1,0 +1,29 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    def coroutineVersion = "1.4.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
+
+    //test
+    testImplementation 'junit:junit:4.13.2'
+
+    // mockito
+    testImplementation 'org.mockito:mockito-core:3.2.4'
+    testImplementation 'org.mockito:mockito-inline:3.2.4'
+
+    // test for coroutine
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2'
+
+    // test for InstantTaskExecutorRule
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+}

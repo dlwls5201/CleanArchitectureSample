@@ -33,8 +33,9 @@ android {
 }
 
 dependencies {
+    implementation project(':domain')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    
+
     def coroutineVersion = "1.4.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
 
@@ -50,8 +51,6 @@ dependencies {
 
     //test
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // mockito
     testImplementation 'org.mockito:mockito-core:3.2.4'

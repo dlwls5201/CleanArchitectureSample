@@ -2,7 +2,7 @@ package com.example.toyproject.ui.model
 
 import android.content.Context
 import android.text.TextUtils
-import com.blackjin.data.model.RepoDetail
+import com.blackjin.domain.model.RepoDetail
 import com.example.toyproject.R
 import com.example.toyproject.utils.DateUtils
 

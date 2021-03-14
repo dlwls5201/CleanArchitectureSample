@@ -1,78 +1,21 @@
 package com.blackjin.data.repository
 
 import com.blackjin.data.api.RepoApi
-import com.blackjin.data.api.UserApi
-import com.blackjin.data.base.BaseResponse
-import com.blackjin.data.model.RepoDetail
-import com.blackjin.data.model.RepoSearchResponse
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.withContext
-import retrofit2.HttpException
+import com.blackjin.data.model.mapToDomain
+import com.blackjin.domain.model.Repos
+import com.blackjin.domain.repository.RepoRepository
 
 class RepoRepositoryImpl(
-    private val repoApi: RepoApi,
-    private val userApi: UserApi
+    private val repoApi: RepoApi
 ) : RepoRepository {
 
-    override suspend fun searchRepositories(
-        query: String,
-        callback: BaseResponse<RepoSearchResponse>
-    ) {
-        withContext(Dispatchers.Main) {
-            try {
-                callback.onLoading()
-                withContext(Dispatchers.IO) {
-                    val repo = repoApi.searchRepository(query)
-                    callback.onSuccess(repo)
-                }
-            } catch (e: Exception) {
-                if (e is HttpException) {
-                    callback.onFail(e.message())
-                } else {
-                    callback.onError(e)
-                }
-            }
-            callback.onLoaded()
-        }
+    override suspend fun searchRepos(query: String): Repos {
+        val response = repoApi.searchRepository(query)
+        return response.mapToDomain()
     }
 
-    override suspend fun getDetailRepository(
-        user: String, repo: String, callback: BaseResponse<RepoDetail>
-    ) {
-        withContext(Dispatchers.Main) {
-            try {
-                callback.onLoading()
-                withContext(Dispatchers.IO) {
-                    val repoDeferred = async { repoApi.getRepository(user, repo) }
-                    val userDeferred = async { userApi.getUser(user) }
-
-                    val repoModel = repoDeferred.await()
-                    val userModel = userDeferred.await()
-
-                    val repoDetail = RepoDetail(
-                        title = repoModel.fullName,
-                        repoName = repoModel.name,
-                        ownerName = userModel.name,
-                        ownerUrl = userModel.profileImgUrl,
-                        followers = userModel.followers,
-                        following = userModel.following,
-                        description = repoModel.description,
-                        language = repoModel.language,
-                        updatedAt = repoModel.updatedAt,
-                        stars = repoModel.stars
-                    )
-
-                    callback.onSuccess(repoDetail)
-                }
-            } catch (e: Exception) {
-                if (e is HttpException) {
-                    callback.onFail(e.message())
-                } else {
-                    callback.onError(e)
-                }
-            }
-            callback.onLoaded()
-        }
+    override suspend fun getRepo(owner: String, repoName: String): Repos.Repo {
+        val response = repoApi.getRepository(owner, repoName)
+        return response.mapToDomain()
     }
 }

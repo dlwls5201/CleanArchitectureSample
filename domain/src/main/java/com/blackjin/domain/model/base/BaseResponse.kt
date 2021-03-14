@@ -1,4 +1,4 @@
-package com.blackjin.data.base
+package com.blackjin.domain.model.base
 
 interface BaseResponse<T> {
 

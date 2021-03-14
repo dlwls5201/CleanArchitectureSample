@@ -1,15 +1,17 @@
 package com.example.toyproject.injection
 
-import com.blackjin.data.api.ApiProvider
-import com.blackjin.data.repository.RepoRepository
-import com.blackjin.data.repository.RepoRepositoryImpl
+import com.blackjin.data.repository.RepoProvider
+import com.blackjin.domain.usecase.GetDetailRepoUsecase
+import com.blackjin.domain.usecase.GetReposUsecase
 
 object Injection {
 
-    fun provideRepoRepository(): RepoRepository {
-        return RepoRepositoryImpl(
-            ApiProvider.provideRepoApi(),
-            ApiProvider.provideUserApi()
-        )
-    }
+    fun provideGetReposUsecase() = GetReposUsecase(
+        RepoProvider.provideRepoRepository()
+    )
+
+    fun provideGetDetailRepoUsecase() = GetDetailRepoUsecase(
+        RepoProvider.provideRepoRepository(),
+        RepoProvider.provideUserRepository()
+    )
 }

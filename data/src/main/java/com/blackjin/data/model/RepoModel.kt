@@ -3,13 +3,13 @@ package com.blackjin.data.model
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
-data class Repo(
+data class RepoModel(
     @SerializedName("name")
     val name: String,
     @SerializedName("full_name")
     val fullName: String,
     @SerializedName("owner")
-    val owner: OwnerModel,
+    val ownerModel: OwnerModel,
     @SerializedName("description")
     val description: String?,
     @SerializedName("language")

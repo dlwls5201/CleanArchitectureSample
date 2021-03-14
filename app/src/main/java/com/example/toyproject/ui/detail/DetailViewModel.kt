@@ -4,16 +4,16 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.blackjin.data.base.BaseResponse
-import com.blackjin.data.model.RepoDetail
-import com.blackjin.data.repository.RepoRepository
+import com.blackjin.domain.model.RepoDetail
+import com.blackjin.domain.model.base.BaseResponse
+import com.blackjin.domain.usecase.GetDetailRepoUsecase
 import com.example.toyproject.R
 import com.example.toyproject.ui.model.RepoDetailItem
 import com.example.toyproject.ui.model.mapToPresentation
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
-    private val repoRepository: RepoRepository
+    private val getDetailRepoUsecase: GetDetailRepoUsecase
 ) : ViewModel() {
 
     val showLoading = MutableLiveData(false)
@@ -22,7 +22,7 @@ class DetailViewModel(
 
     fun loadData(context: Context, ownerName: String, repo: String) {
         viewModelScope.launch {
-            repoRepository.getDetailRepository(ownerName, repo, object : BaseResponse<RepoDetail> {
+            getDetailRepoUsecase(ownerName, repo, object : BaseResponse<RepoDetail> {
                 override fun onSuccess(data: RepoDetail) {
                     repoDetailItem.postValue(data.mapToPresentation(context))
                 }

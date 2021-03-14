@@ -2,7 +2,7 @@ package com.example.toyproject.ui.model
 
 import android.content.Context
 import android.text.TextUtils
-import com.blackjin.data.model.Repo
+import com.blackjin.domain.model.Repos
 import com.example.toyproject.R
 import com.example.toyproject.utils.DateUtils
 
@@ -21,7 +21,7 @@ data class RepoItem(
     )
 }
 
-fun Repo.mapToPresentation(context: Context) = RepoItem(
+fun Repos.Repo.mapToPresentation(context: Context) = RepoItem(
     title = fullName,
     repoName = name,
     owner = RepoItem.OwnerItem(

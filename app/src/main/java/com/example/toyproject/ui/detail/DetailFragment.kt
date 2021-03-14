@@ -32,7 +32,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
         ViewModelProvider(viewModelStore, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 return DetailViewModel(
-                    Injection.provideRepoRepository()
+                    Injection.provideGetDetailRepoUsecase()
                 ) as T
             }
         }).get(DetailViewModel::class.java)

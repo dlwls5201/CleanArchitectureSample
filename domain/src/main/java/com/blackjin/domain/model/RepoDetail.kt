@@ -1,4 +1,4 @@
-package com.blackjin.data.model
+package com.blackjin.domain.model
 
 import java.util.*
 

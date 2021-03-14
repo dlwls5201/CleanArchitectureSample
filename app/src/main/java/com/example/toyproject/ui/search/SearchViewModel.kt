@@ -5,9 +5,9 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.blackjin.data.base.BaseResponse
-import com.blackjin.data.model.RepoSearchResponse
-import com.blackjin.data.repository.RepoRepository
+import com.blackjin.domain.model.Repos
+import com.blackjin.domain.model.base.BaseResponse
+import com.blackjin.domain.usecase.GetReposUsecase
 import com.example.toyproject.R
 import com.example.toyproject.base.ext.EventMutableLiveData
 import com.example.toyproject.base.ext.postEvent
@@ -17,7 +17,7 @@ import com.example.toyproject.utils.Dlog
 import kotlinx.coroutines.launch
 
 class SearchViewModel(
-    private val searchRepository: RepoRepository
+    private val getRepoUsecase: GetReposUsecase
 ) : ViewModel() {
 
     val eventShowKeyboard = EventMutableLiveData<Boolean>()
@@ -49,9 +49,9 @@ class SearchViewModel(
             val query = editSearchText.value ?: return@launch
             Dlog.d("query : $query")
 
-            searchRepository.searchRepositories(query, object : BaseResponse<RepoSearchResponse> {
-                override fun onSuccess(data: RepoSearchResponse) {
-                    items.postValue(data.items.map { it.mapToPresentation(context) })
+            getRepoUsecase(query, object : BaseResponse<Repos> {
+                override fun onSuccess(data: Repos) {
+                    items.postValue(data.repos.map { it.mapToPresentation(context) })
 
                     if (0 == data.totalCount) {
                         showErrorMessage(context.getString(R.string.no_search_result))
